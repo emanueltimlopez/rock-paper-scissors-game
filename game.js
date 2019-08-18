@@ -87,6 +87,25 @@ const newEnemy = function() {
   this.enemyOption = option;
 }
 
+const win = function(enemyOption, playerOption) {
+  if (enemyOption === 'rock') {
+    if (playerOption === 'paper') {
+      return true;
+    }
+    return false;
+  } else if (enemyOption === 'paper') {
+    if (playerOption === 'scissors') {
+      return true;
+    }
+    return false;   
+  } else if (enemyOption === 'scissors') {
+    if (playerOption === 'rock') {
+      return true;
+    }
+    return false;  
+  }
+}
+
 gameScene.update = function() {
 
   if (this.enemyFinish) {
@@ -111,7 +130,7 @@ gameScene.update = function() {
       yoyo: true
     });
 
-    if (this.enemyOption === this.activePlay) {
+    if (win(this.enemyOption, this.activePlay)) {
       this.score += 1;
 
       const scoreFont = "70px Arial";
